@@ -1,7 +1,7 @@
-from gupshup_api import constants
-from gupshup_api.bind import bind_request
-from gupshup_api.messaging.models import SendMessageResponse
-from gupshup_api.messaging import query_params
+from gupshup_python_api_client import constants
+from gupshup_python_api_client.bind import bind_request
+from gupshup_python_api_client.messaging.models import SendMessageResponse
+from gupshup_python_api_client.messaging import query_params
 
 
 class Messaging:

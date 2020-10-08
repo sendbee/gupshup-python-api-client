@@ -1,5 +1,5 @@
-from gupshup_api.models import Model
-from gupshup_api.fields import TextField
+from gupshup_python_api_client.models import Model
+from gupshup_python_api_client.fields import TextField
 
 
 class SendMessageResponse(Model):

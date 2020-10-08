@@ -1,8 +1,8 @@
 import click
 
-from gupshup_api.contacts.client import Contacts
-from gupshup_api.messaging.client import Messaging
-from gupshup_api.exceptions import RequestApiException
+from gupshup_python_api_client.contacts.client import Contacts
+from gupshup_python_api_client.messaging.client import Messaging
+from gupshup_python_api_client.exceptions import RequestApiException
 
 
 class Client(Contacts, Messaging):

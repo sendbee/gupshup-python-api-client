@@ -2,12 +2,12 @@ import click
 import requests
 from abc import ABCMeta
 
-from gupshup_api import constants
-from gupshup_api.debug import Debug
-# from gupshup_api.auth import SendbeeAuth
-from gupshup_api.response import Response
-from gupshup_api.formatter import FormatterFactory
-from gupshup_api.exceptions import RequestApiException, PaginationException
+from gupshup_python_api_client import constants
+from gupshup_python_api_client.debug import Debug
+# from gupshup_python_api_client.auth import SendbeeAuth
+from gupshup_python_api_client.response import Response
+from gupshup_python_api_client.formatter import FormatterFactory
+from gupshup_python_api_client.exceptions import RequestApiException, PaginationException
 
 
 class Api(metaclass=ABCMeta):

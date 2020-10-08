@@ -2,7 +2,7 @@ import ujson
 
 from abc import ABCMeta, abstractmethod
 
-from gupshup_api import constants
+from gupshup_python_api_client import constants
 
 
 class Formatter(metaclass=ABCMeta):

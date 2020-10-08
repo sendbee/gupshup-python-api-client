@@ -1,7 +1,7 @@
-from gupshup_api import constants
-from gupshup_api.bind import bind_request
-from gupshup_api.contacts.models import OptInResponse
-from gupshup_api.contacts import query_params
+from gupshup_python_api_client import constants
+from gupshup_python_api_client.bind import bind_request
+from gupshup_python_api_client.contacts.models import OptInResponse
+from gupshup_python_api_client.contacts import query_params
 
 
 class Contacts:

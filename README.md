@@ -24,7 +24,7 @@ git+ssh://git@github.com/sendbee/gupshup-python-api-client.git@master
 ### <a name='initialization'>Initialization</a>
 
 ```python
-from gupshup_api import GupshupApi
+from gupshup_python_api_client import GupshupApi
 
 api = GupshupApi('__your_api_key_here__')
 ```
@@ -32,7 +32,7 @@ api = GupshupApi('__your_api_key_here__')
 ### <a name='opt-in-user'>Opt-in user</a>
 
 ```python
-from gupshup_api import GupshupApi
+from gupshup_python_api_client import GupshupApi
 
 
 api_key = '__your_api_key_here__'
@@ -52,7 +52,7 @@ For supported message types and data, see
 
 
 ```python
-from gupshup_api import GupshupApi
+from gupshup_python_api_client import GupshupApi
 import ujson as json
 
 

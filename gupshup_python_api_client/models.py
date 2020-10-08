@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from gupshup_api.fields import Field, ModelField
+from gupshup_python_api_client.fields import Field, ModelField
 
 
 class Model:

@@ -1,4 +1,4 @@
-from gupshup_api.query_params import QueryParams
+from gupshup_python_api_client.query_params import QueryParams
 
 
 class OptIn(QueryParams):

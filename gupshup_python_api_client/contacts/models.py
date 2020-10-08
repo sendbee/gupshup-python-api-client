@@ -1,4 +1,4 @@
-from gupshup_api.models import Model
+from gupshup_python_api_client.models import Model
 
 
 class OptInResponse(Model):
