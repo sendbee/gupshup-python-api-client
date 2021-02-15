@@ -56,7 +56,7 @@ def bind_request(**request_data):
                 constants.RequestConst.PATH: []
             }
 
-            self._timeout = 5
+            self._timeout = 15
 
             self._set_parameters(*path_params, **query_params)
 
