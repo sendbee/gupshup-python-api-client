@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='gupshup_python_api_client',
-    version='0.7.0',
+    version='1.0.0',
 
     description='Python client for Gupshup Public API',
     long_description=readme(),
@@ -24,10 +24,10 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
     keywords='gupshup api python',
 

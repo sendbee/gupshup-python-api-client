@@ -95,6 +95,19 @@ class DatetimeField(Field):
             return data
 
 
+class TimestampField(Field):
+    """Converting item to datetime object."""
+
+    def _convert_field_item(self, data, **kwargs):
+        """Actual converting."""
+
+        try:
+            _format = kwargs.get(constants.MiscConst.FORMAT)
+            return datetime.strptime(datetime.fromtimestamp(data), _format)
+        except ValueError:
+            return data
+
+
 class ListField(Field):
     """Converting item to list."""
 

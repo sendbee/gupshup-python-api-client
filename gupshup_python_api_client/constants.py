@@ -25,6 +25,7 @@ class RequestConst(Const):
     PROTOCOL = 'protocol'
     QUERY_PARAMETERS = 'query_parameters'
     DEFAULT_PARAMETERS = 'default_parameters'
+    PARAMS_URL_ENCODED = 'params_url_encoded'
 
 
 class StatusConst(Const):
@@ -98,8 +99,10 @@ class ClientConst(Const):
     META = 'meta'
     MODEL = 'model'
     MODELS = 'models'
+    HEADER = 'header'
     FORMATTER = 'formatter'
     DESCRIPTION = 'description'
+    PAYLOAD_FORMAT = 'payload_format'
     FORCE_SINGLE_MODEL_RESPONSE = 'force_single_model_response'
 
 
