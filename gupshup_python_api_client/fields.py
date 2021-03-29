@@ -1,3 +1,4 @@
+import ujson
 from datetime import datetime
 
 from gupshup_python_api_client import constants
@@ -73,6 +74,18 @@ class TextField(Field):
             return ''
 
 
+class JsonField(Field):
+    """Converting json to object."""
+
+    def _convert_field_item(self, data, **kwargs):
+        """Actual converting."""
+
+        try:
+            return ujson.loads(data)
+        except ValueError:
+            return ''
+
+
 class BooleanField(Field):
     """Converting item to boolean."""
 
@@ -91,6 +104,19 @@ class DatetimeField(Field):
         try:
             _format = kwargs.get(constants.MiscConst.FORMAT)
             return datetime.strptime(data, _format)
+        except ValueError:
+            return data
+
+
+class TimestampField(Field):
+    """Converting item to datetime object."""
+
+    def _convert_field_item(self, data, **kwargs):
+        """Actual converting."""
+
+        try:
+            _format = kwargs.get(constants.MiscConst.FORMAT)
+            return datetime.strptime(datetime.fromtimestamp(data), _format)
         except ValueError:
             return data
 

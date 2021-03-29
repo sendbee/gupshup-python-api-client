@@ -1,13 +1,12 @@
-import click
 import requests
 from abc import ABCMeta
+from urllib.parse import urlencode
 
 from gupshup_python_api_client import constants
 from gupshup_python_api_client.debug import Debug
-# from gupshup_python_api_client.auth import SendbeeAuth
 from gupshup_python_api_client.response import Response
 from gupshup_python_api_client.formatter import FormatterFactory
-from gupshup_python_api_client.exceptions import RequestApiException, PaginationException
+from gupshup_python_api_client.exceptions import RequestApiException
 
 
 class Api(metaclass=ABCMeta):
@@ -22,7 +21,9 @@ def bind_request(**request_data):
 
         model = request_data.get(constants.ClientConst.MODEL)
         api_path = request_data.get(constants.RequestConst.API_PATH)
+        payload_format = request_data.get(constants.ClientConst.PAYLOAD_FORMAT)
         formatter = request_data.get(constants.ClientConst.FORMATTER)
+        header = request_data.get(constants.ClientConst.HEADER) or {}
         method = request_data.get(
             constants.RequestConst.METHOD, constants.RequestConst.GET
         )
@@ -135,14 +136,25 @@ def bind_request(**request_data):
 
             if self.method == constants.RequestConst.GET:
                 params = self.parameters[constants.RequestConst.QUERY]
-                for param, value in params.items():
-                    if isinstance(value, list):
-                        params[param] = ','.join(value)
-                    elif isinstance(value, dict):
-                        params[param] = ','.join([f'{k}:{v}' for k, v in value])
 
-                url_query = '?' + '&'.join([f'{k}={v}' for k, v in params.items()])
-                final_url = '{}{}'.format(final_url, url_query)
+                used_params = []
+                for param, value in params.items():
+                    if f'<{param}>' in final_url:
+                        final_url = final_url.replace(f'<{param}>', value)
+                        used_params.append(param)
+
+                for param in used_params:
+                    del params[param]
+
+                if params:
+                    for param, value in params.items():
+                        if isinstance(value, list):
+                            params[param] = ','.join(value)
+                        elif isinstance(value, dict):
+                            params[param] = ','.join([f'{k}:{v}' for k, v in value])
+
+                    url_query = '?' + '&'.join([f'{k}={v}' for k, v in params.items()])
+                    final_url = '{}{}'.format(final_url, url_query)
 
             self.debug.ok(constants.DebugConst.FINAL_URL, final_url)
 
@@ -152,10 +164,20 @@ def bind_request(**request_data):
             """Construct headers data with authentication part"""
 
             headers = {
-                'apikey': self.client.api_key,
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'User-Agent': 'Sendbee Python API Client'
+                **self.__class__.header,
+                'User-Agent': 'Gupshup Python API Client'
             }
+            if self.client.api_key:
+                headers = {
+                    **headers,
+                    'apikey': self.client.api_key
+                }
+            if self.client.api_token:
+                headers = {
+                    **headers,
+                    'token': self.client.api_token
+                }
+
             self.debug.ok(constants.DebugConst.HEADERS, headers)
 
             return headers
@@ -198,8 +220,15 @@ def bind_request(**request_data):
                 elif self.method == constants.RequestConst.DELETE:
                     send_request = requests.delete
 
+                if self.__class__.payload_format == \
+                        constants.RequestConst.PARAMS_URL_ENCODED:
+                    payload = urlencode(
+                        self.parameters[constants.RequestConst.QUERY])
+                else:
+                    payload = self.parameters[constants.RequestConst.QUERY]
+
                 response = send_request(
-                    url, data=self.parameters[constants.RequestConst.QUERY],
+                    url, data=payload,
                     headers=self._headers(), timeout=self._timeout
                 )
 

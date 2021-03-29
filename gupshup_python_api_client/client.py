@@ -7,6 +7,7 @@ from gupshup_python_api_client.exceptions import RequestApiException
 
 class Client(Contacts, Messaging):
     """Main API class. Sets all API calls."""
+
     base_url = 'api.gupshup.io'
     protocol = 'https'
 
@@ -28,4 +29,3 @@ class Client(Contacts, Messaging):
             getattr(cls, fn_name)(None, print_params=True)
         except AttributeError:
             click.secho('Unknown API method: {}'.format(fn_name), fg='red')
-
