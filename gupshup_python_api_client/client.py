@@ -19,6 +19,7 @@ class Client(Contacts, Messaging):
         self.debug = debug
         self.request = None
         self.api_key = api_key
+        self.api_token = None
         self.fake_response_path = fake_response_path
 
     @classmethod
