@@ -1,3 +1,4 @@
+import ujson
 from datetime import datetime
 
 from gupshup_python_api_client import constants
@@ -69,6 +70,18 @@ class TextField(Field):
 
         try:
             return str(data)
+        except ValueError:
+            return ''
+
+
+class JsonField(Field):
+    """Converting json to object."""
+
+    def _convert_field_item(self, data, **kwargs):
+        """Actual converting."""
+
+        try:
+            return ujson.loads(data)
         except ValueError:
             return ''
 
