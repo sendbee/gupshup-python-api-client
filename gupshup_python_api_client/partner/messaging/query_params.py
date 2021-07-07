@@ -10,10 +10,10 @@ class ListTemplates(QueryParams):
 class CreateTemplate(QueryParams):
     """Parameters for creating a WhatsApp message template"""
 
-    element_name = 'elementName', 'Gupshup App ID'
-    language_code = 'languageCode', 'Gupshup App ID'
-    category = 'category', 'Gupshup App ID'
-    template_type = 'templateType', 'Gupshup App ID'
-    vertical = 'vertical', 'Gupshup App ID'
-    content = 'content', 'Gupshup App ID'
-    buttons = 'buttons', 'Gupshup App ID'
+    element_name = 'elementName', 'Element name'
+    language_code = 'languageCode', 'Language code'
+    category = 'category', 'Template category'
+    template_type = 'templateType', 'Template type'
+    vertical = 'vertical', 'Same as element_name'
+    content = 'content', 'Text body'
+    buttons = 'buttons', 'Template buttons'
