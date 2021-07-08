@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='gupshup_python_api_client',
-    version='1.0.0',
+    version='1.1.0',
 
     description='Python client for Gupshup Public API',
     long_description=readme(),
