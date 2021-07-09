@@ -1,6 +1,6 @@
 from gupshup_python_api_client.models import Model
 from gupshup_python_api_client.fields import TextField, BooleanField, \
-    ModelField, TimestampField
+    ModelField, TimestampField, NumberField
 
 
 class App(Model):
@@ -21,3 +21,20 @@ class AppList(Model):
     """Data model for Gupshup app list"""
 
     _apps = ModelField(App, index='partnerAppsList', desc='Gupshup app list')
+
+
+class AppHealth(Model):
+    """Data model for Gupshup app health"""
+
+    _healthy = BooleanField(index='healthy', desc='Healthy or not')
+
+
+class AppRating(Model):
+    """Data model for Gupshup app rating"""
+
+    _message_limit = NumberField(
+        index='messageLimit', desc='Max number of message per day')
+    _quality_rating = TextField(
+        index='qualityRating', desc='App\'s quality rating')
+    _ratings_update_on = TimestampField(
+        index='ratingsUpdateOn', desc='Last update time')
