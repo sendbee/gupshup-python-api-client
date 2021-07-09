@@ -26,6 +26,16 @@ class Template(Model):
 class TemplateList(Model):
     """Data model for Gupshup WhatsApp message template list"""
 
+    _status = TextField(index='status', desc='Request status')
     _templates = ModelField(
         Template, index='templates',
         desc='Gupshup WhatsApp Message template list')
+
+
+class CreateTemplate(Model):
+    """Data model for Gupshup WhatsApp message template created"""
+
+    _status = TextField(index='status', desc='Request status')
+    _template = ModelField(
+        Template, index='template',
+        desc='Gupshup WhatsApp Message template')
