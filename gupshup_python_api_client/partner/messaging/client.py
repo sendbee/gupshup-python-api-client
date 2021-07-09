@@ -25,5 +25,6 @@ class Messaging:
         force_single_model_response=True,
         model=Template,
         query_parameters=query_params.CreateTemplate,
+        url_parameters=query_params.CreateTemplateURL,
         description='Create WhatsApp message template'
     )

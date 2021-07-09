@@ -30,6 +30,9 @@ def bind_request(**request_data):
         query_parameters = request_data.get(
             constants.RequestConst.QUERY_PARAMETERS
         )
+        url_parameters = request_data.get(
+            constants.RequestConst.URL_PARAMETERS
+        )
         fake_response_path = request_data.get(
             constants.TestConst.FAKE_RESPONSE_PATH
         )
@@ -54,6 +57,7 @@ def bind_request(**request_data):
             self.client = client
             self.parameters = {
                 constants.RequestConst.QUERY: {},
+                constants.RequestConst.URL: {},
                 constants.RequestConst.PATH: []
             }
 
@@ -87,10 +91,18 @@ def bind_request(**request_data):
 
             _query_params = self.query_parameters.get_params()
 
-            # set API call params defined during the "call" invocation
+            if self.url_parameters:
+                _url_params = self.url_parameters.get_params()
+            else:
+                _url_params = {}
+
+                # set API call params defined during the "call" invocation
             for key, value in query_params.items():
                 if value is None:
                     continue
+
+                if key in _url_params.values():
+                    self.parameters[constants.RequestConst.URL][key] = value
 
                 if key in _query_params.values():
                     self.parameters[constants.RequestConst.QUERY][key] = value
@@ -136,25 +148,27 @@ def bind_request(**request_data):
 
             if self.method == constants.RequestConst.GET:
                 params = self.parameters[constants.RequestConst.QUERY]
+            else:
+                params = self.parameters[constants.RequestConst.URL]
 
-                used_params = []
+            used_params = []
+            for param, value in params.items():
+                if f'<{param}>' in final_url:
+                    final_url = final_url.replace(f'<{param}>', value)
+                    used_params.append(param)
+
+            for param in used_params:
+                del params[param]
+
+            if params:
                 for param, value in params.items():
-                    if f'<{param}>' in final_url:
-                        final_url = final_url.replace(f'<{param}>', value)
-                        used_params.append(param)
+                    if isinstance(value, list):
+                        params[param] = ','.join(value)
+                    elif isinstance(value, dict):
+                        params[param] = ','.join([f'{k}:{v}' for k, v in value])
 
-                for param in used_params:
-                    del params[param]
-
-                if params:
-                    for param, value in params.items():
-                        if isinstance(value, list):
-                            params[param] = ','.join(value)
-                        elif isinstance(value, dict):
-                            params[param] = ','.join([f'{k}:{v}' for k, v in value])
-
-                    url_query = '?' + '&'.join([f'{k}={v}' for k, v in params.items()])
-                    final_url = '{}{}'.format(final_url, url_query)
+                url_query = '?' + '&'.join([f'{k}={v}' for k, v in params.items()])
+                final_url = '{}{}'.format(final_url, url_query)
 
             self.debug.ok(constants.DebugConst.FINAL_URL, final_url)
 
