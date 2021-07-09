@@ -245,6 +245,21 @@ def bind_request(**request_data):
                     url, data=payload,
                     headers=self._headers(), timeout=self._timeout
                 )
+                # class response:
+                #     text = '{"status":"success","template":{"category":' \
+                #            '"AUTO_REPLY","createdOn":1625843483030,"data":' \
+                #            '"Hi {{1}}, thank you for contacting Sendbee. ' \
+                #            'How can we help you?","elementName":' \
+                #            '"haw_can_we_help_you","id":' \
+                #            '"e26b39d5-3928-4e5a-b197-277a342ab709",' \
+                #            '"languageCode":"en_GB","languagePolicy":' \
+                #            '"deterministic","master":true,"meta":' \
+                #            '"{\\"example\\":\\"Hi [John], thank you for ' \
+                #            'contacting Sendbee. How can we help you?\\"}",' \
+                #            '"modifiedOn":1625843484807,"status":"PENDING",' \
+                #            '"templateType":"TEXT","vertical":' \
+                #            '"haw_can_we_help_you"}}'
+                #     status_code = 200
 
                 self.debug.ok(
                     constants.DebugConst.PARAMETERS,
@@ -328,6 +343,7 @@ def bind_request(**request_data):
 
             self.url = self._prepare_url()
             status_code, response = self._do_request(self.url)
+
             return self._process_response(status_code, response)
 
     def call(client, *path_params, **query_params):

@@ -2,7 +2,7 @@ from gupshup_python_api_client import constants
 from gupshup_python_api_client.bind import bind_request
 from gupshup_python_api_client.partner.messaging import query_params
 from gupshup_python_api_client.partner.messaging.models import TemplateList, \
-    Template
+    CreateTemplate
 
 
 class Messaging:
@@ -23,7 +23,7 @@ class Messaging:
         api_path='/partner/app/<app_id>/templates',
         header={'Connection': 'keep-alive'},
         force_single_model_response=True,
-        model=Template,
+        model=CreateTemplate,
         query_parameters=query_params.CreateTemplate,
         url_parameters=query_params.CreateTemplateURL,
         description='Create WhatsApp message template'

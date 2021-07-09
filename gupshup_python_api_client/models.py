@@ -20,6 +20,13 @@ class Model:
         else:
             raise AttributeError(item)
 
+    def to_dict(self):
+        data = {}
+        for key, value in self.attributes.items():
+            data[key] = value.value
+
+        return data
+
     @classmethod
     def process(cls, data):
         """Transform raw data into models."""
