@@ -36,6 +36,7 @@ class CreateTemplate(Model):
     """Data model for Gupshup WhatsApp message template created"""
 
     _status = TextField(index='status', desc='Request status')
+    _message = TextField(index='message', desc='Error message')
     _template = ModelField(
         Template, index='template',
         desc='Gupshup WhatsApp Message template')
