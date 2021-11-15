@@ -40,3 +40,10 @@ class CreateTemplate(Model):
     _template = ModelField(
         Template, index='template',
         desc='Gupshup WhatsApp Message template')
+
+
+class MediaHandle(Model):
+    """Data model for Gupshup uploaded media handle"""
+
+    _handle_id = TextField(index='handleId', desc='Media handle ID')
+    _status = TextField(index='status', desc='Request status')

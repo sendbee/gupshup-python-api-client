@@ -116,4 +116,5 @@ class DebugConst(Const):
     HEADERS = 'headers'
     METHOD = 'method'
     QUERY_PARAMETERS = 'query parameters'
+    CURL = 'curl'
 

@@ -219,6 +219,10 @@ def bind_request(**request_data):
                     self.parameters[constants.RequestConst.QUERY]
                 )
                 self.debug.ok(constants.DebugConst.RESPONSE, response)
+                self.debug.ok(
+                    constants.DebugConst.CURL,
+                    curlify.to_curl(response.request)
+                )
 
                 return response.status_code, response.text
 
@@ -268,6 +272,10 @@ def bind_request(**request_data):
                 self.debug.ok(
                     constants.DebugConst.RESPONSE,
                     response
+                )
+                self.debug.set_curl(
+                    constants.DebugConst.CURL,
+                    response.request
                 )
 
                 return response.status_code, response.text

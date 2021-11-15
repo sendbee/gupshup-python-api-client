@@ -23,4 +23,12 @@ class CreateTemplate(QueryParams):
     vertical = 'vertical', 'Same as element_name'
     content = 'content', 'Text body'
     example = 'example', 'Example text body'
+    example_media = 'exampleMedia', 'Media Gupshup handle ID'
     buttons = 'buttons', 'Template buttons'
+
+
+class UploadTemplateMedia(QueryParams):
+    """Parameters for uploading template example media file"""
+
+    file = 'file', 'File upload object'
+    file_type = 'file_type', 'File mime type'
