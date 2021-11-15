@@ -7,8 +7,8 @@ class ListTemplates(QueryParams):
     app_id = 'app_id', 'Gupshup App ID'
 
 
-class CreateTemplateURL(QueryParams):
-    """URL Parameters for creating a WhatsApp message template"""
+class AppIdInURL(QueryParams):
+    """URL Parameters for app_id in url"""
 
     app_id = 'app_id', 'Gupshup App ID'
 
@@ -23,7 +23,7 @@ class CreateTemplate(QueryParams):
     vertical = 'vertical', 'Same as element_name'
     content = 'content', 'Text body'
     example = 'example', 'Example text body'
-    example_media = 'exampleMedia', 'Media Gupshup handle ID'
+    media_handle_id = 'exampleMedia', 'Media Gupshup handle ID'
     buttons = 'buttons', 'Template buttons'
 
 

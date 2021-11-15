@@ -33,6 +33,9 @@ def bind_request(**request_data):
         url_parameters = request_data.get(
             constants.RequestConst.URL_PARAMETERS
         )
+        file_parameters = request_data.get(
+            constants.RequestConst.FILE_PARAMETERS
+        )
         fake_response_path = request_data.get(
             constants.TestConst.FAKE_RESPONSE_PATH
         )
@@ -58,6 +61,7 @@ def bind_request(**request_data):
             self.parameters = {
                 constants.RequestConst.QUERY: {},
                 constants.RequestConst.URL: {},
+                constants.RequestConst.FILE: {},
                 constants.RequestConst.PATH: []
             }
 
@@ -96,13 +100,21 @@ def bind_request(**request_data):
             else:
                 _url_params = {}
 
-                # set API call params defined during the "call" invocation
+            if self.file_parameters:
+                _file_params = self.file_parameters.get_params()
+            else:
+                _file_params = {}
+
+            # set API call params defined during the "call" invocation
             for key, value in query_params.items():
                 if value is None:
                     continue
 
                 if key in _url_params.values():
                     self.parameters[constants.RequestConst.URL][key] = value
+
+                if key in _file_params.values():
+                    self.parameters[constants.RequestConst.FILE][key] = value
 
                 if key in _query_params.values():
                     self.parameters[constants.RequestConst.QUERY][key] = value
@@ -218,10 +230,12 @@ def bind_request(**request_data):
                     constants.DebugConst.QUERY_PARAMETERS,
                     self.parameters[constants.RequestConst.QUERY]
                 )
-                self.debug.ok(constants.DebugConst.RESPONSE, response)
                 self.debug.ok(
+                    constants.DebugConst.RESPONSE, response
+                )
+                self.debug.set_curl(
                     constants.DebugConst.CURL,
-                    curlify.to_curl(response.request)
+                    response.request
                 )
 
                 return response.status_code, response.text
@@ -245,8 +259,13 @@ def bind_request(**request_data):
                 else:
                     payload = self.parameters[constants.RequestConst.QUERY]
 
+                if self.parameters[constants.RequestConst.FILE]:
+                    files = self.parameters[constants.RequestConst.FILE]
+                else:
+                    files = None
+
                 response = send_request(
-                    url, data=payload,
+                    url, data=payload, files=files,
                     headers=self._headers(), timeout=self._timeout
                 )
                 # class response:

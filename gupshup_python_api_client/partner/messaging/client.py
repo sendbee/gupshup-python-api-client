@@ -25,6 +25,7 @@ class Messaging:
         force_single_model_response=True,
         model=MediaHandle,
         query_parameters=query_params.UploadTemplateMedia,
+        url_parameters=query_params.AppIdInURL,
         description='Upload template example media file'
     )
 
@@ -35,6 +36,6 @@ class Messaging:
         force_single_model_response=True,
         model=CreateTemplate,
         query_parameters=query_params.CreateTemplate,
-        url_parameters=query_params.CreateTemplateURL,
+        url_parameters=query_params.AppIdInURL,
         description='Create WhatsApp message template'
     )
