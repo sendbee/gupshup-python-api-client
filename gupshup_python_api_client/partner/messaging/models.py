@@ -45,7 +45,7 @@ class CreateTemplate(Model):
 class MediaHandleMessageID(Model):
     """Data model for Gupshup uploaded media handle message id"""
 
-    _message = JsonField(index='message', desc='Media handle ID')
+    _message = TextField(index='message', desc='Media handle ID')
 
 
 class MediaHandle(Model):
