@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='gupshup_python_api_client',
-    version='1.2.1',
+    version='1.3.0',
 
     description='Python client for Gupshup Public API',
     long_description=readme(),
@@ -38,6 +38,7 @@ setup(
         'dumpit>=0.5.0',
         'aenum>=2.1.2',
         'ujson==2.0.1',
+        'curlify==2.2.1'
     ],
 
     project_urls={

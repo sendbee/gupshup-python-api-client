@@ -1,4 +1,5 @@
 import click
+import curlify
 
 
 STATUS_OK = 'ok'
@@ -23,6 +24,13 @@ class Debug:
 
     def error(self, key, value):
         self.record(key, value, STATUS_ERROR)
+
+    def set_curl(self, key, request):
+        if self.client.debug:
+            try:
+                self.ok(key, curlify.to_curl(request, compressed=False))
+            except UnicodeDecodeError:
+                self.ok(key, '__unable_to_decode__')
 
     def record(self, key, value, status):
         if self.client.debug:
