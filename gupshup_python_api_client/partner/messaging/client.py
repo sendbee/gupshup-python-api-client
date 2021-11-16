@@ -14,7 +14,7 @@ class Messaging:
         header={'Connection': 'keep-alive'},
         force_single_model_response=True,
         model=TemplateList,
-        query_parameters=query_params.ListTemplates,
+        query_parameters=query_params.AppIdInURL,
         description='Get WhatsApp message template list'
     )
 
