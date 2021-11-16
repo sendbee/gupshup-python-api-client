@@ -30,5 +30,10 @@ class CreateTemplate(QueryParams):
 class UploadTemplateMedia(QueryParams):
     """Parameters for uploading template example media file"""
 
-    file = 'file', 'File upload object'
     file_type = 'file_type', 'File mime type'
+
+
+class UploadTemplateMediaFile(QueryParams):
+    """Parameters for uploading template example media file"""
+
+    file = 'file', 'File upload object'

@@ -12,9 +12,9 @@ class Messaging:
         method=constants.RequestConst.GET,
         api_path='/partner/app/<app_id>/templates',
         header={'Connection': 'keep-alive'},
-        force_single_model_response=True,
         model=TemplateList,
         query_parameters=query_params.ListTemplates,
+        url_parameters=query_params.AppIdInURL,
         description='Get WhatsApp message template list'
     )
 
@@ -25,6 +25,7 @@ class Messaging:
         force_single_model_response=True,
         model=MediaHandle,
         query_parameters=query_params.UploadTemplateMedia,
+        file_parameters=query_params.UploadTemplateMediaFile,
         url_parameters=query_params.AppIdInURL,
         description='Upload template example media file'
     )
