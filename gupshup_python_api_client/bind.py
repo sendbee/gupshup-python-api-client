@@ -264,9 +264,6 @@ def bind_request(**request_data):
                 else:
                     files = None
 
-                print(files)
-                print(self.parameters)
-
                 response = send_request(
                     url, data=payload, files=files,
                     headers=self._headers(), timeout=self._timeout
