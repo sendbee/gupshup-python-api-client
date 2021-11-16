@@ -12,6 +12,7 @@ class Messaging:
         method=constants.RequestConst.GET,
         api_path='/partner/app/<app_id>/templates',
         header={'Connection': 'keep-alive'},
+        force_single_model_response=True,
         model=TemplateList,
         query_parameters=query_params.ListTemplates,
         url_parameters=query_params.AppIdInURL,
