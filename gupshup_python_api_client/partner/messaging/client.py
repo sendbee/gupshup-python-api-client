@@ -15,7 +15,6 @@ class Messaging:
         force_single_model_response=True,
         model=TemplateList,
         query_parameters=query_params.ListTemplates,
-        url_parameters=query_params.AppIdInURL,
         description='Get WhatsApp message template list'
     )
 

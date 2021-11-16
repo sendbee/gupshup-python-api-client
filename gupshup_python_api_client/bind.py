@@ -293,7 +293,7 @@ def bind_request(**request_data):
                 )
                 self.debug.ok(
                     constants.DebugConst.RESPONSE,
-                    response
+                    response.text
                 )
                 self.debug.set_curl(
                     constants.DebugConst.CURL,

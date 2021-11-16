@@ -27,7 +27,10 @@ class Debug:
 
     def set_curl(self, key, request):
         if self.client.debug:
-            self.ok(key, curlify.to_curl(request, compressed=False))
+            try:
+                self.ok(key, curlify.to_curl(request, compressed=False))
+            except UnicodeDecodeError:
+                self.ok(key, '__unable_to_decode__')
 
     def record(self, key, value, status):
         if self.client.debug:
