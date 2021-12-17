@@ -21,6 +21,8 @@ class Template(Model):
     _status = TextField(index='status', desc='Template status')
     _type = TextField(index='templateType', desc='Template type')
     _vertical = TextField(index='vertical', desc='Template vertical')
+    _rejected_reason = TextField(
+        index='reason', desc='Template rejected reason')
 
 
 class TemplateList(Model):
