@@ -23,7 +23,10 @@ class Model:
     def to_dict(self):
         data = {}
         for key, value in self.attributes.items():
-            data[key] = value.value
+            if value is None:
+                data[key] = None
+            else:
+                data[key] = value.value
 
         return data
 
