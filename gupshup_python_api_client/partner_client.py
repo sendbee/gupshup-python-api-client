@@ -12,12 +12,14 @@ class PartnerClient(Auth, App, Contact, Messaging):
     base_url = 'partner.gupshup.io'
     protocol = 'https'
 
-    def __init__(self, token=None, debug=False, fake_response_path=None):
+    def __init__(self, token=None, authorization=None, debug=False,
+                 fake_response_path=None):
 
         self.debug = debug
         self.request = None
         self.api_key = None
         self.api_token = token
+        self.api_authorization = authorization
         self.fake_response_path = fake_response_path
 
     @classmethod
