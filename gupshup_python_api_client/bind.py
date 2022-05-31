@@ -1,3 +1,6 @@
+import time
+import functools
+
 import requests
 from abc import ABCMeta
 from urllib.parse import urlencode
@@ -7,6 +10,36 @@ from gupshup_python_api_client.debug import Debug
 from gupshup_python_api_client.response import Response
 from gupshup_python_api_client.formatter import FormatterFactory
 from gupshup_python_api_client.exceptions import RequestApiException
+
+
+class audit:
+
+    def __init__(self, name=None):
+        self._name = name
+        self._start = 0
+
+    def __call__(self, fn):
+        @functools.wraps(fn)
+        def _function_wrapper(*args, **kwargs):
+            self._start = time.time()
+            fn_result = fn(*args, **kwargs)
+            if not self._name:
+                self._name = fn.__name__
+            self._result()
+            return fn_result
+
+        return _function_wrapper
+
+    def __enter__(self):
+        self._start = time.time()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self._result()
+
+    def _result(self):
+        result = round((time.time() - self._start) * 1000, 6)
+        print(f'{self._name} - {result}')
 
 
 class Api(metaclass=ABCMeta):
@@ -51,6 +84,7 @@ def bind_request(**request_data):
             constants.RequestConst.DELETE
         ]
 
+        # @audit()
         def __init__(self, client, debug: 'Debug',
                      *path_params, **query_params):
             client.request = self
@@ -69,6 +103,7 @@ def bind_request(**request_data):
 
             self._set_parameters(*path_params, **query_params)
 
+        # @audit()
         def _set_parameters(self, *path_params, **query_params):
             """
             Prepares the list of query parameters
@@ -140,6 +175,7 @@ def bind_request(**request_data):
             for value in path_params:
                 self.parameters[constants.RequestConst.PATH].append(value)
 
+        # @audit()
         def _prepare_url(self):
             """
             Prepares url and query parameters for the request
@@ -186,6 +222,7 @@ def bind_request(**request_data):
 
             return final_url
 
+        # @audit()
         def _headers(self):
             """Construct headers data with authentication part"""
 
@@ -203,11 +240,17 @@ def bind_request(**request_data):
                     **headers,
                     'token': self.client.api_token
                 }
+            if self.client.api_authorization:
+                headers = {
+                    **headers,
+                    'Authorization': self.client.api_authorization
+                }
 
             self.debug.ok(constants.DebugConst.HEADERS, headers)
 
             return headers
 
+        # @audit()
         def _do_request(self, url: str):
             """
             Makes the request to Sendbee Api servers
@@ -264,10 +307,11 @@ def bind_request(**request_data):
                 else:
                     files = None
 
-                response = send_request(
-                    url, data=payload, files=files,
-                    headers=self._headers(), timeout=self._timeout
-                )
+                if True:  # with audit('actual request'):
+                    response = send_request(
+                        url, data=payload, files=files,
+                        headers=self._headers(), timeout=self._timeout
+                    )
                 # class response:
                 #     text = '{"status":"success","template":{"category":' \
                 #            '"AUTO_REPLY","createdOn":1625843483030,"data":' \
@@ -302,6 +346,7 @@ def bind_request(**request_data):
             else:
                 return constants.ResponseCode.NOT_FOUND_404, {}
 
+        # @audit()
         def _process_response(self, status_code, response):
             """
             Process response using models
@@ -362,6 +407,7 @@ def bind_request(**request_data):
             else:
                 return response
 
+        # @audit('request call')
         def call(self):
             """
             Makes the API call
@@ -373,6 +419,7 @@ def bind_request(**request_data):
 
             return self._process_response(status_code, response)
 
+    # @audit('main call')
     def call(client, *path_params, **query_params):
         """
         Binded method for API calls

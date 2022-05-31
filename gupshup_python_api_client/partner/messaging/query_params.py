@@ -32,3 +32,14 @@ class UploadTemplateMediaFile(QueryParams):
     """Parameters for uploading template example media file"""
 
     file = 'file', 'File upload object'
+
+
+class SendTemplateMessage(QueryParams):
+    """Parameters for sending a WhatsApp message template"""
+
+    source = 'source', 'Source Phone number'
+    sandbox = 'sandbox', 'Send in sandbox mode'
+    destination = 'destination', 'Destination phone number'
+    template = 'template', 'Template data'
+    message = 'message', 'Message data'
+    app_name = 'src.name', 'Gupshup app name'

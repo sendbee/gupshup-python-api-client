@@ -54,3 +54,10 @@ class MediaHandle(Model):
     _handle = ModelField(MediaHandleMessageID,
                          index='handleId', desc='Media handle ID')
     _status = TextField(index='status', desc='Request status')
+
+
+class SendMessageResponse(Model):
+    """Data model for sent message"""
+
+    _status = TextField(index='status', desc='Message status')
+    _message_id = TextField(index='messageId', desc='Message UUID')

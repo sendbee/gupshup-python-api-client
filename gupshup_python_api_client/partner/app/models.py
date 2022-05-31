@@ -33,8 +33,10 @@ class AppRating(Model):
     """Data model for Gupshup app rating"""
 
     _message_limit = NumberField(
-        index='messageLimit', desc='Max number of message per day')
-    _quality_rating = TextField(
-        index='qualityRating', desc='App\'s quality rating')
-    _ratings_update_on = TimestampField(
-        index='ratingsUpdateOn', desc='Last update time')
+        index='currentLimit', desc='Max number of message per day')
+    _event = TextField(
+        index='event', desc='Tier change event')
+    _event_time = TimestampField(
+        index='eventTime', desc='Event time')
+    _old_limit = TimestampField(
+        index='oldLimit', desc='Previous messaging limit')
