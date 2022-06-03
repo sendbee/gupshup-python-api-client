@@ -40,3 +40,31 @@ class AppRating(Model):
         index='eventTime', desc='Event time')
     _old_limit = TimestampField(
         index='oldLimit', desc='Previous messaging limit')
+
+
+class WebhookURL(Model):
+    """Data model for Gupshup webhook url"""
+
+    _success = TextField(
+        index='success', desc='Action success')
+
+
+class WebhookEvent(Model):
+    """Data model for Gupshup webhook event"""
+
+    _success = TextField(
+        index='success', desc='Action success')
+
+
+class OptinMessage(Model):
+    """Data model for Gupshup webhook url"""
+
+    _success = TextField(
+        index='success', desc='Action success')
+
+
+class EnablingTemplateMessaging(Model):
+    """Data model for Gupshup enabling/disabling template messaging"""
+
+    _success = TextField(
+        index='success', desc='Action success')
