@@ -39,7 +39,7 @@ class OptinMessage(QueryParams):
 class WebhookEvents(QueryParams):
     """Query parameters for setting webhook events"""
 
-    events = 'models', 'DELIVERED|READ|SENT|DELETED|OTHERS|TEMPLATE|ACCOUNT'
+    events = 'modes', 'DELIVERED|READ|SENT|DELETED|OTHERS|TEMPLATE|ACCOUNT'
 
 
 class EnableTemplateMessaging(QueryParams):
