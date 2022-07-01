@@ -73,3 +73,4 @@ class App:
         model=EnablingTemplateMessaging,
         description='Enabling/disabling template messaging'
     )
+

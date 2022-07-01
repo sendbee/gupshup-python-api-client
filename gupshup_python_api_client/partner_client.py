@@ -3,10 +3,11 @@ import click
 from gupshup_python_api_client.partner.app.client import App
 from gupshup_python_api_client.partner.auth.client import Auth
 from gupshup_python_api_client.partner.contact.client import Contact
+from gupshup_python_api_client.partner.gusphup.client import Gupshup
 from gupshup_python_api_client.partner.messaging.client import Messaging
 
 
-class PartnerClient(Auth, App, Contact, Messaging):
+class PartnerClient(Auth, App, Contact, Messaging, Gupshup):
     """Partner API class. Sets all Partner API calls."""
 
     base_url = 'partner.gupshup.io'
