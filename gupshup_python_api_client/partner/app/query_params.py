@@ -46,4 +46,3 @@ class EnableTemplateMessaging(QueryParams):
     """Query parameters for enabling/disabling template messaging"""
 
     enable = 'isHSMEnabled', 'True|False'
-
