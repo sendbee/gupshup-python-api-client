@@ -32,7 +32,7 @@ class AppHealth(Model):
 class AppRating(Model):
     """Data model for Gupshup app rating"""
 
-    _message_limit = NumberField(
+    _message_limit = TextField(
         index='currentLimit', desc='Max number of message per day')
     _event = TextField(
         index='event', desc='Tier change event')
