@@ -38,7 +38,7 @@ class AppRating(Model):
         index='event', desc='Tier change event')
     _event_time = TimestampField(
         index='eventTime', desc='Event time')
-    _old_limit = TimestampField(
+    _old_limit = TextField(
         index='oldLimit', desc='Previous messaging limit')
 
 
