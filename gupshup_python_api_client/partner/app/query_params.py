@@ -46,3 +46,11 @@ class EnableTemplateMessaging(QueryParams):
     """Query parameters for enabling/disabling template messaging"""
 
     enable = 'isHSMEnabled', 'True|False'
+
+
+class AppUsage(QueryParams):
+    """Query parameters for fetching app usages"""
+
+    app_id = 'app_id', 'Gupshup App ID'
+    date_from = 'from', 'YYYY-MM-DD from'
+    date_to = 'to', 'YYYY-MM-DD to'

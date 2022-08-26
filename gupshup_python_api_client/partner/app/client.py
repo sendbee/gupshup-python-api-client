@@ -3,7 +3,7 @@ from gupshup_python_api_client.bind import bind_request
 from gupshup_python_api_client.partner.app import query_params
 from gupshup_python_api_client.partner.app.models import \
     AppList, AppHealth, AppRating, WebhookURL, OptinMessage, WebhookEvent, \
-    EnablingTemplateMessaging
+    EnablingTemplateMessaging, AppUsageList
 
 
 class App:
@@ -72,5 +72,15 @@ class App:
         query_parameters=query_params.EnableTemplateMessaging,
         model=EnablingTemplateMessaging,
         description='Enabling/disabling template messaging'
+    )
+
+    app_usage = bind_request(
+        method=constants.RequestConst.GET,
+        api_path='/partner/app/<app_id>/usage',
+        url_parameters=query_params.AppIdInURL,
+        query_parameters=query_params.AppUsage,
+        force_single_model_response=True,
+        model=AppUsageList,
+        description='App usage'
     )
 
