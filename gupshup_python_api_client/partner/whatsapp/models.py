@@ -18,3 +18,23 @@ class ProfileDetails(Model):
 
     _status = TextField(index='status', desc='Request status')
     _profile = ModelField(Profile, index='profile', desc='WABA profile details')
+
+
+class About(Model):
+    """Data model for partner WABA profile about"""
+
+    _text = TextField(index='message', desc='WABA profile about text')
+
+
+class AboutText(Model):
+    """Data model for partner WABA profile about text"""
+
+    _status = TextField(index='status', desc='Request status')
+    _about = ModelField(About, index='about', desc='WABA profile details')
+
+
+class RequestStatus(Model):
+    """Data model for partner WABA request status"""
+
+    _status = TextField(index='status', desc='Request status')
+    _message = TextField(index='message', desc='Request message')

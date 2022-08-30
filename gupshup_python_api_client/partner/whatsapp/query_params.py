@@ -8,7 +8,7 @@ class AppIdInURL(QueryParams):
 
 
 class ProfileUpdate(QueryParams):
-    """Query parameters for WABa profile update"""
+    """Query parameters for WABA profile update"""
 
     address1 = 'addLine1', 'WABA profile address1'
     address2 = 'addLine2', 'WABA profile address2'
@@ -21,3 +21,15 @@ class ProfileUpdate(QueryParams):
     vertical = 'vertical', 'WABA profile vertical'
     website1 = 'website1', 'WABA profile website 1'
     website2 = 'website2', 'WABA profile website 2'
+
+
+class ProfileAbout(QueryParams):
+    """Query parameters for WABa profile about update"""
+
+    about = 'about', 'WABA profile about'
+
+
+class UploadProfilePhotoFile(QueryParams):
+    """Parameters for uploading template example media file"""
+
+    file = 'file', 'File upload object'
