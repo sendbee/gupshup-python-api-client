@@ -1,6 +1,6 @@
 from gupshup_python_api_client.models import Model
 from gupshup_python_api_client.fields import TextField, BooleanField, \
-    ModelField, TimestampField, NumberField
+    ModelField, TimestampField, NumberField, RealNumberField, DatetimeField
 
 
 class App(Model):
@@ -68,3 +68,31 @@ class EnablingTemplateMessaging(Model):
 
     _success = TextField(
         index='success', desc='Action success')
+
+
+class AppUsage(Model):
+    """Data model for Gupshup app usage"""
+
+    _bic = NumberField(index='bic', desc='BIC')
+    _uic = NumberField(index='uic', desc='UIC')
+    _fep = NumberField(index='fep', desc='FEP')
+    _ftc = NumberField(index='ftc', desc='FTC')
+    _inbound = NumberField(index='incomingMsg', desc='Inbound messages')
+    _outbound = NumberField(index='outgoingMsg', desc='Outbound messages')
+    _templates = NumberField(index='templateMsg', desc='Template messages')
+    _template_media = NumberField(
+        index='templateMediaMsgSKU', desc='Outbound media messages')
+    _outbound_media = NumberField(
+        index='outgoingMediaMsgSKU', desc='Template media messages')
+    _total_messages = NumberField(index='totalMsg', desc='Total messages')
+    _gupshup_fee = RealNumberField(index='gsFees', desc='Gupshup fee')
+    _whatsapp_fee = RealNumberField(index='waFees', desc='Whatsapp fee')
+    _total_fee = RealNumberField(index='totalFees', desc='Total fee')
+    _date = DatetimeField(index='date', desc='Date', format='%Y-%m-%d')
+
+
+class AppUsageList(Model):
+    """Data model for Gupshup app usages list"""
+
+    _usage_list = ModelField(
+        AppUsage, index='partnerAppUsageList', desc='Gupshup app list')
