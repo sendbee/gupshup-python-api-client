@@ -29,11 +29,11 @@ class Whatsapp:
     )
 
     update_whatsapp_profile_picture = bind_request(
-        method=constants.RequestConst.PUT,
-        api_path='/partner/app/<app_id>/business/profile/photo',
+        method=constants.RequestConst.POST,
+        api_path='/partner/app/<app_id>/business/profile/photo/',
+        header={'Content-Type': 'multipart/form-data'},
         url_parameters=query_params.AppIdInURL,
-        query_parameters=query_params.ProfileAbout,
-        file_parameters=query_params.UploadProfilePhotoFile,
+        query_parameters=query_params.UploadProfilePhotoFile,
         model=RequestStatus,
         force_single_model_response=True,
         description='Update WABA profile photo'
@@ -41,7 +41,7 @@ class Whatsapp:
 
     delete_whatsapp_profile_picture = bind_request(
         method=constants.RequestConst.DELETE,
-        api_path='/partner/app/<app_id>/business/profile/photo',
+        api_path='/partner/app/<app_id>/business/profile/photo/',
         url_parameters=query_params.AppIdInURL,
         model=RequestStatus,
         force_single_model_response=True,

@@ -128,7 +128,10 @@ def bind_request(**request_data):
             for key, value in self.default_parameters.items():
                 self.parameters[constants.RequestConst.QUERY][key] = value
 
-            _query_params = self.query_parameters.get_params()
+            if self.query_parameters:
+                _query_params = self.query_parameters.get_params()
+            else:
+                _query_params = {}
 
             if self.url_parameters:
                 _url_params = self.url_parameters.get_params()
@@ -342,7 +345,6 @@ def bind_request(**request_data):
                 )
 
                 return response.status_code, response.text
-
             else:
                 return constants.ResponseCode.NOT_FOUND_404, {}
 
