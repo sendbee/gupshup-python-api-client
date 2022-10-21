@@ -342,7 +342,6 @@ def bind_request(**request_data):
                 )
 
                 return response.status_code, response.text
-
             else:
                 return constants.ResponseCode.NOT_FOUND_404, {}
 
@@ -369,30 +368,17 @@ def bind_request(**request_data):
                     .get_formatter()
 
             response = Response(response, status_code, formatter, self)
-            formatted_data = response.formatted_data
-
             if status_code >= constants.ResponseCode.BAD_REQUEST_400:
-
-                description = constants.ErrorConst.DEFAULT_DESCRIPTION
-
-                try:
-                    for key in constants.ErrorConst.DESCRIPTION_KEYS:
-                        if formatted_data.get(key):
-                            description = formatted_data.get(key)
-                            break
-                except (TypeError, AttributeError):
-                    pass
-
                 error_data = {
                     constants.ErrorConst.STATUS_KEY: status_code,
-                    constants.ErrorConst.DESCRIPTION_KEY: description
+                    constants.ErrorConst.DESCRIPTION_KEY: response.raw_data
                 }
 
                 self.debug.error(
                     constants.DebugConst.STATUS_CODE, status_code
                 )
                 self.debug.error(
-                    constants.DebugConst.RESPONSE, response.formatted_data
+                    constants.DebugConst.RESPONSE, f"""{response.raw_data}"""
                 )
                 raise RequestApiException(error_data)
             else:
