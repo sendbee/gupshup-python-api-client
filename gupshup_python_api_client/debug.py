@@ -26,6 +26,7 @@ class Debug:
         self.record(key, value, STATUS_ERROR)
 
     def set_curl(self, key, request):
+        print(curlify.to_curl(request, compressed=False))
         if self.client.debug:
             try:
                 self.ok(key, curlify.to_curl(request, compressed=False))

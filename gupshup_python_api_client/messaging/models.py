@@ -11,3 +11,14 @@ class SendMessageResponse(Model):
         index='invalidConstraintInformation', desc='Invalid message'
     )
     _message_id = TextField(index='messageId', desc='Message UUID')
+
+
+class MessageSeenResponse(Model):
+    """Data model for message seen"""
+
+    _status = TextField(index='status', desc='Message status')
+    _message = TextField(index='message', desc='Fail message')
+    _invalid_constraint_information = JsonField(
+        index='invalidConstraintInformation', desc='Invalid message'
+    )
+    _message_id = TextField(index='messageId', desc='Message UUID')

@@ -1,11 +1,12 @@
 import click
 
+from gupshup_python_api_client.waba.client import Waba
 from gupshup_python_api_client.contacts.client import Contacts
 from gupshup_python_api_client.messaging.client import Messaging
 from gupshup_python_api_client.exceptions import RequestApiException
 
 
-class Client(Contacts, Messaging):
+class Client(Contacts, Messaging, Waba):
     """Main API class. Sets all API calls."""
 
     base_url = 'api.gupshup.io'
