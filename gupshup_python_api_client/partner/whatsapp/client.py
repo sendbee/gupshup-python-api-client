@@ -8,6 +8,16 @@ from gupshup_python_api_client.partner.whatsapp.models import ProfileDetails, \
 class Whatsapp:
     """Partner Api client for WABA accounts"""
 
+    whatsapp_profile = bind_request(
+        method=constants.RequestConst.GET,
+        api_path='/partner/app/<app_id>/business/profile',
+        url_parameters=query_params.AppIdInURL,
+        query_parameters=query_params.Profile,
+        model=ProfileDetails,
+        force_single_model_response=True,
+        description='Get WABA profile data'
+    )
+
     update_whatsapp_profile = bind_request(
         method=constants.RequestConst.PUT,
         api_path='/partner/app/<app_id>/business/profile',
@@ -31,6 +41,10 @@ class Whatsapp:
     update_whatsapp_profile_picture = bind_request(
         method=constants.RequestConst.PUT,
         api_path='/partner/app/<app_id>/business/profile/photo',
+        header={
+            'Connection': 'keep-alive',
+            'Content-Type': 'multipart/form-data'
+        },
         url_parameters=query_params.AppIdInURL,
         query_parameters=query_params.ProfileAbout,
         file_parameters=query_params.UploadProfilePhotoFile,

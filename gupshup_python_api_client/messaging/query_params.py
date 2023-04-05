@@ -17,3 +17,14 @@ class SendTemplateMessage(QueryParams):
     destination = 'destination', 'Destination phone number'
     template = 'template', 'Template data'
     message = 'message', 'Message data'
+
+
+class MessageSeen(QueryParams):
+    """Parameters for message seen"""
+
+
+class AppIdMsgIdInURL(QueryParams):
+    """URL Parameters for app_id and msg_id in url"""
+
+    app_id = 'app_id', 'Gupshup App ID'
+    msg_id = 'msg_id', 'Message ID'

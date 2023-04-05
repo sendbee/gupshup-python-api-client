@@ -7,6 +7,12 @@ class AppIdInURL(QueryParams):
     app_id = 'app_id', 'Gupshup App ID'
 
 
+class Profile(QueryParams):
+    """URL Parameters for WABA profile"""
+
+    app_id = 'app_id', 'Gupshup App ID'
+
+
 class ProfileUpdate(QueryParams):
     """Query parameters for WABA profile update"""
 
