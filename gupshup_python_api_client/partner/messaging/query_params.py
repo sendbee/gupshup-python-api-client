@@ -20,6 +20,7 @@ class CreateTemplate(QueryParams):
     media_handle_id = 'exampleMedia', 'Media Gupshup handle ID'
     enable_sample = 'enableSample', 'Enable example media'
     buttons = 'buttons', 'Template buttons'
+    template_change = 'allowTemplateCategoryChange', 'Dynamic template change'
 
 
 class UploadTemplateMedia(QueryParams):
