@@ -8,6 +8,7 @@ class SendMessage(QueryParams):
     destination = 'destination', 'Destination phone number'
     message = 'message', 'Message text or json-encoded data'
     src_name = 'src.name', 'Optional, for Sandbox apps only'
+    context = 'context', 'Optional, agent replies to'
 
 
 class SendTemplateMessage(QueryParams):
