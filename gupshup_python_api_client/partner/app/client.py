@@ -3,17 +3,50 @@ from gupshup_python_api_client.bind import bind_request
 from gupshup_python_api_client.partner.app import query_params
 from gupshup_python_api_client.partner.app.models import \
     AppList, AppHealth, AppRating, WebhookURL, OptinMessage, WebhookEvent, \
-    EnablingTemplateMessaging, AppUsageList
+    EnablingTemplateMessaging, AppUsageList, UpdateApp, AppListModel
 
 
 class App:
     """Partner Api client for Gupshup apps"""
 
+    # cloud api
+    update_app = bind_request(
+        method=constants.RequestConst.PUT,
+        api_path='/partner/app/<app_id>',
+        url_parameters=query_params.AppIdInURL,
+        query_parameters=query_params.UpdateApp,
+        model=UpdateApp,
+        force_single_model_response=True,
+        description='Update APP'
+    )
+
+    # getting app list using cloud api
+    get_list_apps = bind_request(
+        method=constants.RequestConst.GET,
+        api_path='/partner/app/list',
+        query_parameters=query_params.AppListParams,
+        model=AppListModel,
+        force_single_model_response=True,
+        description='Get partner API APP list'
+    )
+
+    # getting app list using on-premise api
     list_apps = bind_request(
         method=constants.RequestConst.GET,
         api_path='/partner/account/api/partnerApps',
         query_parameters=query_params.AppList,
         model=AppList,
+        force_single_model_response=True,
+        description='Get partner API APP list'
+    )
+
+    # cloud api
+    app_details = bind_request(
+        method=constants.RequestConst.GET,
+        api_path='/partner/app/<app_id>/details',
+        url_parameters=query_params.AppIdInURL,
+        query_parameters=query_params.UpdateApp,
+        model=UpdateApp,
         force_single_model_response=True,
         description='Get partner API APP list'
     )
