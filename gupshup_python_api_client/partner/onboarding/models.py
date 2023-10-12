@@ -23,4 +23,5 @@ class VerificationEmailResent(Model):
 class OnboardingLinkGenerated(Model):
     """Onboarding link data model"""
 
-    _link = 'link', 'Onboarding link'
+    _link = TextField(index='link', desc='Onboarding link')
+    _success = TextField(index='success', desc='Request success')
