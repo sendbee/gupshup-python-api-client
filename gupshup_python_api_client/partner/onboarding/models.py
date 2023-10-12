@@ -23,4 +23,4 @@ class VerificationEmailResent(Model):
 class OnboardingLinkGenerated(Model):
     """Onboarding link data model"""
 
-    link = 'link', 'Onboarding link'
+    _link = 'link', 'Onboarding link'
