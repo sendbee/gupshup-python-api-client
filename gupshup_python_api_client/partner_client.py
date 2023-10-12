@@ -6,9 +6,11 @@ from gupshup_python_api_client.partner.contact.client import Contact
 from gupshup_python_api_client.partner.gusphup.client import Gupshup
 from gupshup_python_api_client.partner.whatsapp.client import Whatsapp
 from gupshup_python_api_client.partner.messaging.client import Messaging
+from gupshup_python_api_client.partner.onboarding.client import Onboarding
 
 
-class PartnerClient(Auth, App, Contact, Messaging, Gupshup, Whatsapp):
+class PartnerClient(Auth, App, Contact, Messaging, Gupshup, Whatsapp,
+                    Onboarding):
     """Partner API class. Sets all Partner API calls."""
 
     base_url = 'partner.gupshup.io'
