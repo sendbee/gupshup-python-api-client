@@ -40,7 +40,7 @@ class AppListModel(Model):
     """Data model for Gupshup app list"""
 
     _apps = ModelField(
-        AppDetails, index='partnerAppsList', desc='Gupshup app list')
+        AppDetails, index='apps', desc='Gupshup app list')
 
 
 class App(Model):
