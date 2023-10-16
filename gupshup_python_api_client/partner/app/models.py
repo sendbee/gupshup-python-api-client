@@ -13,6 +13,7 @@ class AppDetails(Model):
     _stopped = BooleanField(index='stopped', desc='Is app stoped')
     _modified_at = TimestampField(index='modifiedOn', desc='Token modified at')
     _name = TextField(index='name', desc='App name')
+    _phone = TextField(index='phone', desc='App phone number')
     _webhook_url = TextField(index='callbackUrl', desc='Webhook URL')
     _disabled_optin_url = BooleanField(
         index='disableOptinPrefUrl', desc='Disabled optin URL')
@@ -27,6 +28,14 @@ class AppDetails(Model):
         index='templateMessaging', desc='WA template messaging on/off')
     _type = TextField(index='type', desc='App type')
     _version = TextField(index='version', desc='App version')
+    _creation_stage = TextField(index='creationStage', desc='Creation stage')
+    _embed_stage = TextField(index='embedStage', desc='Embed stage')
+    _migration_status = TextField(index='migrationStatus', desc='Migration status')
+    _pipeline_stage = TextField(index='pipelineStage', desc='Pipeline stage')
+    _messages_limit = TextField(index='pnQualityNewLimit', desc='Messages limit')
+    _ui_form_stage = TextField(index='uiFormStage', desc='UI form stage')
+    _wa_verification_stage = TextField(
+        index='whatsappVerificationStatus', desc='WA verification stage')
 
 
 class UpdateApp(Model):
