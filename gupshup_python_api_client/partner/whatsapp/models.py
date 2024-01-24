@@ -5,7 +5,11 @@ from gupshup_python_api_client.fields import TextField, ModelField
 class Profile(Model):
     """Data model for partner WABA profile details"""
 
-    _address = TextField(index='addressLine1', desc='WABA profile address')
+    _address1 = TextField(index='addressLine1', desc='WABA profile address')
+    _address2 = TextField(index='addressLine2', desc='WABA profile address')
+    _city = TextField(index='cit', desc='WABA profile cit')
+    _country = TextField(index='country', desc='WABA profile country')
+    _state = TextField(index='state', desc='WABA profile state')
     _email = TextField(index='profileEmail', desc='WABA profile email')
     _description = TextField(index='desc', desc='WABA profile description')
     _vertical = TextField(index='vertical', desc='WABA profile vertical')
