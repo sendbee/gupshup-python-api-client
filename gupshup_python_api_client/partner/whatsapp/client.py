@@ -28,6 +28,15 @@ class Whatsapp:
         description='Update WABA profile data'
     )
 
+    get_whatsapp_about = bind_request(
+        method=constants.RequestConst.GET,
+        api_path='/partner/app/<app_id>/business/profile/about',
+        url_parameters=query_params.AppIdInURL,
+        model=AboutText,
+        force_single_model_response=True,
+        description='Get WABA profile about text'
+    )
+
     update_whatsapp_about = bind_request(
         method=constants.RequestConst.PUT,
         api_path='/partner/app/<app_id>/business/profile/about',
