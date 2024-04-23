@@ -37,7 +37,7 @@ setup(
         'requests>=2.20.0',
         'dumpit>=0.5.0',
         'aenum>=2.1.2',
-        'ujson==2.0.1',
+        'ujson>=2.0.1,<6.0',
         'curlify==2.2.1'
     ],
 
